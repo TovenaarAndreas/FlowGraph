@@ -53,7 +53,7 @@ class FLOW_API UFlowComponent : public UActorComponent, public IFlowOwnerInterfa
 //////////////////////////////////////////////////////////////////////////
 // Identity Tags
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Flow")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Flow", meta=(Categories="Flow.Id"))
 	FGameplayTagContainer IdentityTags;
 
 private:
@@ -69,16 +69,16 @@ public:
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
-	UFUNCTION(BlueprintCallable, Category = "Flow")
+	UFUNCTION(BlueprintCallable, Category = "Flow", meta = (Categories = "Flow.Id"))
 	void AddIdentityTag(const FGameplayTag Tag, const EFlowNetMode NetMode = EFlowNetMode::Authority);
 
-	UFUNCTION(BlueprintCallable, Category = "Flow")
+	UFUNCTION(BlueprintCallable, Category = "Flow", meta = (Categories = "Flow.Id"))
 	void AddIdentityTags(FGameplayTagContainer Tags, const EFlowNetMode NetMode = EFlowNetMode::Authority);
 
-	UFUNCTION(BlueprintCallable, Category = "Flow")
+	UFUNCTION(BlueprintCallable, Category = "Flow", meta = (Categories = "Flow.Id"))
 	void RemoveIdentityTag(const FGameplayTag Tag, const EFlowNetMode NetMode = EFlowNetMode::Authority);
 
-	UFUNCTION(BlueprintCallable, Category = "Flow")
+	UFUNCTION(BlueprintCallable, Category = "Flow", meta = (Categories = "Flow.Id"))
 	void RemoveIdentityTags(FGameplayTagContainer Tags, const EFlowNetMode NetMode = EFlowNetMode::Authority);
 
 protected:
@@ -119,12 +119,12 @@ public:
 
 	// Send single notification from the actor to Flow graphs
 	// If set on server, it always going to be replicated to clients
-	UFUNCTION(BlueprintCallable, Category = "Flow")
+	UFUNCTION(BlueprintCallable, Category = "Flow", meta = (Categories = "Flow"))
 	void NotifyGraph(const FGameplayTag NotifyTag, const EFlowNetMode NetMode = EFlowNetMode::Authority);
 
 	// Send multiple notifications at once - from the actor to Flow graphs
 	// If set on server, it always going to be replicated to clients
-	UFUNCTION(BlueprintCallable, Category = "Flow")
+	UFUNCTION(BlueprintCallable, Category = "Flow", meta = (Categories = "Flow"))
 	void BulkNotifyGraph(const FGameplayTagContainer NotifyTags, const EFlowNetMode NetMode = EFlowNetMode::Authority);
 
 private:
@@ -164,7 +164,7 @@ private:
 
 public:
 	// Send notification to another actor containing Flow Component
-	UFUNCTION(BlueprintCallable, Category = "Flow")
+	UFUNCTION(BlueprintCallable, Category = "Flow", meta = (Categories = "Flow"))
 	virtual void NotifyActor(const FGameplayTag ActorTag, const FGameplayTag NotifyTag, const EFlowNetMode NetMode = EFlowNetMode::Authority);
 
 private:
