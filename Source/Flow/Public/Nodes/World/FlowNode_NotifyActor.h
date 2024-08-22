@@ -16,7 +16,7 @@ class FLOW_API UFlowNode_NotifyActor : public UFlowNode
 	GENERATED_UCLASS_BODY()
 
 protected:
-	UPROPERTY(EditAnywhere, Category = "Notify")
+	UPROPERTY(EditAnywhere, Category = "Notify", meta = (Categories = "Flow.Id"))
 	FGameplayTagContainer IdentityTags;
 	
 	UPROPERTY(EditAnywhere, Category = "Notify")

@@ -21,7 +21,7 @@ class FLOW_API UFlowNode_ComponentObserver : public UFlowNode
 	friend class FFlowNode_ComponentObserverDetails;
 
 protected:
-	UPROPERTY(EditAnywhere, Category = "ObservedComponent")
+	UPROPERTY(EditAnywhere, Category = "ObservedComponent", meta=(Categories="Flow.Id"))
 	FGameplayTagContainer IdentityTags;
 
 	// Container A: Identity Tags in Flow Component
