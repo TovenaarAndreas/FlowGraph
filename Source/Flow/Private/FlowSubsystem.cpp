@@ -57,6 +57,23 @@ void UFlowSubsystem::Deinitialize()
 	AbortActiveFlows();
 }
 
+void UFlowSubsystem::OnSerialize(FArchive& Archive, bool bIsLoading)
+{
+	if (!LoadedSaveGame)
+	{
+		LoadedSaveGame = NewObject<UFlowSaveGame>(this);
+	}
+
+	if (bIsLoading)
+	{
+		OnGameLoaded(LoadedSaveGame);
+	}
+	else
+	{
+		OnGameSaved(LoadedSaveGame);
+	}
+}
+
 void UFlowSubsystem::AbortActiveFlows()
 {
 	if (InstancedTemplates.Num() > 0)

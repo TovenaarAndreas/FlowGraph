@@ -7,6 +7,7 @@
 #include "Subsystems/GameInstanceSubsystem.h"
 
 #include "FlowComponent.h"
+#include "SaveGameObjectInterface.h"
 #include "FlowSubsystem.generated.h"
 
 class UFlowAsset;
@@ -25,7 +26,7 @@ DECLARE_DELEGATE_OneParam(FNativeFlowAssetEvent, class UFlowAsset*);
  * - convenient base for project-specific systems
  */
 UCLASS()
-class FLOW_API UFlowSubsystem : public UGameInstanceSubsystem
+class FLOW_API UFlowSubsystem : public UGameInstanceSubsystem, public ISaveGameObjectInterface
 {
 	GENERATED_BODY()
 
@@ -59,7 +60,7 @@ public:
 #endif
 	
 protected:
-	UPROPERTY()
+	UPROPERTY(SaveGame)
 	UFlowSaveGame* LoadedSaveGame;
 
 public:
@@ -67,6 +68,8 @@ public:
 
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	virtual void Deinitialize() override;
+
+	virtual void OnSerialize(FArchive& Archive, bool bIsLoading) override;
 
 	UFUNCTION(BlueprintCallable, Category = "FlowSubsystem")
 	virtual void AbortActiveFlows();
