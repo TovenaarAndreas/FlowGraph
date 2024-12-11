@@ -57,7 +57,7 @@ void UFlowSubsystem::Deinitialize()
 	AbortActiveFlows();
 }
 
-void UFlowSubsystem::OnSerialize(FArchive& Archive, bool bIsLoading)
+void UFlowSubsystem::OnSerialize(FSaveGameArchive& Archive, bool bIsLoading)
 {
 	if (!LoadedSaveGame)
 	{
